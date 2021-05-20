@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.store.databinding.ActivityMainBinding
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -33,6 +35,9 @@ class MainActivity : AppCompatActivity(), OnClickListener {
     private fun setupRecyclerView() {
         mAdapter = StoreAdapter(mutableListOf(), this)
         mGridLayout = GridLayoutManager(this, 2)
+        getStore()
+
+
 
         mBinding.recyclerView.apply {
             setHasFixedSize(true)
@@ -41,6 +46,15 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         }
     }
 
+    private fun getStore(){
+        doAsync {
+        val stores = StoreApplication.databse.storeDao().getAllStores()
+            uiThread {
+                mAdapter.setStore(stores)
+            }
+        }
+
+    }
 
     /*
     * OnClickListener
