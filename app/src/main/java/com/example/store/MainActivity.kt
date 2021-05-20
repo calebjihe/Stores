@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         mBinding.btnSave.setOnClickListener {
             val store = StoreEntity(name = mBinding.etName.text.toString().trim())
+
+            Thread{
+                StoreApplication.databse.storeDao().addStore(store)
+            }.start()
+
+
             mAdapter.add(store)
         }
 
