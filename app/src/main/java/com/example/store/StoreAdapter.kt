@@ -48,7 +48,15 @@ class StoreAdapter(private var stores:MutableList<StoreEntity>, private var  lis
         val index = stores.indexOf(storeEntity)
         if (index != -1){
             stores.set(index,storeEntity)
-            notifyItemChanged(index,)
+            notifyItemChanged(index)
+        }
+    }
+
+    fun delete(storeEntity: StoreEntity) {
+        val index = stores.indexOf(storeEntity)
+        if (index != -1){
+            stores.removeAt(index)
+            notifyItemRemoved(index)
         }
     }
 
@@ -56,7 +64,13 @@ class StoreAdapter(private var stores:MutableList<StoreEntity>, private var  lis
         val binding = ItemStoreBinding.bind(view)
 
         fun setListener(storeEntity: StoreEntity){
-            binding.root.setOnClickListener { listener.onClick(storeEntity) }
+            with(binding.root){
+                setOnClickListener { listener.onClick(storeEntity) }
+                setOnLongClickListener {
+                    listener.onDeleteStore(storeEntity)
+                   true
+                }
+            }
 
             binding.cbFavorite.setOnClickListener {
                 listener.onFavoriteStore(storeEntity)
