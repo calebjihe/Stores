@@ -58,11 +58,13 @@ class   EditStoreFragment : Fragment() {
             R.id.action_save -> {
                 val store = StoreEntity(name = mBinding.etName.text.toString().trim(),
                                         phone = mBinding.etPhone.text.toString().trim(),
+                                        photoUrl = mBinding.etPhotoUrl.text.toString().trim(),
                                         website = mBinding.etWebsite.text.toString().trim())
                 doAsync {
                     store.id = StoreApplication.databse.storeDao().addStore(store)
                     uiThread {
                         mActivity?.addStore(store)
+
 
                         hideKeyboard()
 
