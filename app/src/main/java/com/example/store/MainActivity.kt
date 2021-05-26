@@ -7,7 +7,7 @@ import com.example.store.databinding.ActivityMainBinding
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainActivity : AppCompatActivity(), OnClickListener {
+class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
 
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var mAdapter: StoreAdapter
@@ -18,18 +18,29 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        mBinding.btnSave.setOnClickListener {
+        /*mBinding.btnSave.setOnClickListener {
             val store = StoreEntity(name = mBinding.etName.text.toString().trim())
-
             Thread{
                 StoreApplication.databse.storeDao().addStore(store)
             }.start()
-
-
             mAdapter.add(store)
-        }
-
+        }*/
+        mBinding.fab.setOnClickListener { launchEditFragment() }
         setupRecyclerView()
+    }
+
+    private fun launchEditFragment() {
+        val fragment = EditStoreFragment()
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.add(R.id.containerMain, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+
+        //mBinding.fab.hide()
+        hideFab()
     }
 
     private fun setupRecyclerView() {
@@ -82,5 +93,11 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                 mAdapter.delete(storeEntity)
             }
         }
+    }
+    /*
+    *MainAux
+    * */
+    override fun hideFab(isVisible: Boolean) {
+        if(isVisible) mBinding.fab.show() else mBinding.fab.hide()
     }
 }
