@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class EditStoreFragment : Fragment() {
+class   EditStoreFragment : Fragment() {
 
     private lateinit var mBinding: FragmentEditStoreBinding
     private var mActivity: MainActivity? = null
@@ -49,6 +49,8 @@ class EditStoreFragment : Fragment() {
                 doAsync {
                     StoreApplication.databse.storeDao().addStore(store)
                     uiThread {
+                        mActivity?.addStore(store)
+
                         hideKeyboard()
 
                         Snackbar.make(mBinding.root,
