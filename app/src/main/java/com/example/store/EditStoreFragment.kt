@@ -2,6 +2,7 @@ package com.example.store
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -64,18 +65,28 @@ class   EditStoreFragment : Fragment() {
 
     private fun setUiStore(storeEntity: StoreEntity) {
         with(mBinding){
-            etName.setText(storeEntity.name)
-            etPhone.setText(storeEntity.phone)
-            etWebsite.setText(storeEntity.website)
-            etPhotoUrl.setText(storeEntity.photoUrl)
-            Glide.with(activity!!)
+            //etName.setText(storeEntity.name)
+            etName.text = storeEntity.name.editable()
+
+            //etPhone.setText(storeEntity.phone)
+            //etPhone.text = Editable.Factory.getInstance().newEditable(storeEntity.phone)
+            etPhone.text = storeEntity.phone.editable()
+
+            //etWebsite.setText(storeEntity.website)
+            etWebsite.text = storeEntity.website.editable()
+
+            //etPhotoUrl.setText(storeEntity.photoUrl)
+            etPhotoUrl.text = storeEntity.photoUrl.editable()
+
+           /* Glide.with(activity!!)
                 .load(storeEntity.photoUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
-                .into(imgPhoto)
+                .into(imgPhoto)*/
 
         }
     }
+    private  fun String.editable():Editable =  Editable.Factory.getInstance().newEditable(this)
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_save, menu)
