@@ -49,18 +49,7 @@ class   EditStoreFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        mBinding.etPhotoUrl.addTextChangedListener {
-            Glide.with(this)
-                .load(mBinding.etPhotoUrl.text.toString())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
-                .into(mBinding.imgPhoto)
 
-        }
-
-        mBinding.etName.addTextChangedListener { validateFields(mBinding.tilName) }
-        mBinding.etPhone.addTextChangedListener { validateFields(mBinding.tilPhone) }
-        mBinding.etPhotoUrl.addTextChangedListener { validateFields(mBinding.tilPhotoUrl) }
 
     }
 
