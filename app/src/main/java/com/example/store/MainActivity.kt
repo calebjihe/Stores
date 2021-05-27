@@ -1,9 +1,11 @@
 package com.example.store
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.store.databinding.ActivityMainBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -96,12 +98,20 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
     }
 
     override fun onDeleteStore(storeEntity: StoreEntity) {
-        doAsync {
-            StoreApplication.databse.storeDao().deleteStore(storeEntity)
-            uiThread {
-                mAdapter.delete(storeEntity)
-            }
-        }
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.dialog_delete_title)
+            .setPositiveButton(R.string.dialog_delete_confirm,{ dialogInterface, which ->
+                doAsync {
+                    StoreApplication.databse.storeDao().deleteStore(storeEntity)
+                    uiThread {
+                        mAdapter.delete(storeEntity)
+                    }
+                }
+            })
+            .setNegativeButton(R.string.dialog_delete_cancel, null)
+            .show()
+
+
     }
     /*
     *MainAux
