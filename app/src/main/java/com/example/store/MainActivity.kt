@@ -1,8 +1,11 @@
 package com.example.store
 
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.store.databinding.ActivityMainBinding
@@ -108,7 +111,7 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
                 when(i){
                     0 -> confirmDelete(storeEntity)
 
-                    1 -> Toast.makeText(this, "Llamar...", Toast.LENGTH_SHORT).show()
+                    1 -> dial(storeEntity.phone)
 
                     2 -> Toast.makeText(this, "Sitio web...", Toast.LENGTH_SHORT).show()
                 }
@@ -129,6 +132,14 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
             })
             .setNegativeButton(R.string.dialog_delete_cancel, null)
             .show()
+    }
+    private fun dial(phone: String){
+        val callItent = Intent().apply {
+            action = Intent.ACTION_DIAL
+            data = Uri.parse("tel:$phone")
+        }
+        startActivity(callItent)
+
     }
     /*
     *MainAux
