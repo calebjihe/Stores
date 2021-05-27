@@ -88,7 +88,9 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
         doAsync {
             StoreApplication.databse.storeDao().updateStore(storeEntity)
             uiThread {
-                mAdapter.update(storeEntity)
+                //mAdapter.update(storeEntity)
+                updateStore(storeEntity)
+
             }
         }
     }
