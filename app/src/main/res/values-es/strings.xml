@@ -1,12 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Stores</string>
+    <string name="app_name">Tiendas</string>
 
-    <string name="key_id" translatable="false">arg_id</string>
-
-    <string name="dialog_delete_title">¿Delete Store?</string>
-    <string name="dialog_delete_confirm">Delete</string>
-    <string name="dialog_delete_cancel">Cancel</string>
-    <string name="dialog_options_title">¿What would you like to do?</string>
+    <string name="dialog_delete_title">¿Eliminar Tienda?</string>
+    <string name="dialog_delete_confirm">Eliminar</string>
+    <string name="dialog_delete_cancel">Cancelar</string>
+    <string name="dialog_options_title">¿Que desea hacer?</string>
 
     <string name="description_img_photo">Imagen de la tienda</string>
     <string name="description_store_add">Crear tienda</string>
@@ -24,11 +23,11 @@
 
     <string name="helper_required">Requerido</string>
 
-    <string name="menu_save">Save</string>
+    <string name="menu_save">Guardar</string>
 
     <string name="main_error_website">Esta tienda no cuenta con un sitio web</string>
     <string name="main_error_no_resolve">No se encontro ninguna app compatible</string>
 
-    <string name="options_item_call">To Call</string>
-    <string name="options_item_website">Go to website</string>
+    <string name="options_item_call">Llamar</string>
+    <string name="options_item_website">Ir al sitio web</string>
 </resources>

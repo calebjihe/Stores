@@ -10,4 +10,9 @@
 
     <color name="color_white_t">#CCFFFFFF</color>
     <color name="color_link">#0D47A1</color>
+
+    <color name="primaryColor">#26a69a</color>
+    <color name="primaryDarkColor">#00766c</color>
+    <color name="secondaryColor">#ff1744</color>
+    <color name="secondaryDarkColor">#c4001d</color>
 </resources>
