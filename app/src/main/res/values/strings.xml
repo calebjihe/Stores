@@ -29,6 +29,6 @@
     <string name="main_error_website">Esta tienda no cuenta con un sitio web</string>
     <string name="main_error_no_resolve">No se encontro ninguna app compatible</string>
 
-    <string name="options_item_call">Llamar</string>
-    <string name="options_item_website">Ir al sitio web</string>
+    <string name="options_item_call">To Call</string>
+    <string name="options_item_website">Go to website</string>
 </resources>
