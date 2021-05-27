@@ -57,6 +57,11 @@ class   EditStoreFragment : Fragment() {
                 .into(mBinding.imgPhoto)
 
         }
+
+        mBinding.etName.addTextChangedListener { validateFields(mBinding.tilName) }
+        mBinding.etPhone.addTextChangedListener { validateFields(mBinding.tilPhone) }
+        mBinding.etPhotoUrl.addTextChangedListener { validateFields(mBinding.tilPhotoUrl) }
+
     }
 
     private fun getStore(id: Long) {
@@ -153,7 +158,7 @@ class   EditStoreFragment : Fragment() {
                 texField.error =getString(R.string.helper_required)
                 //texField.editText?.requestFocus()
                 isValid = false
-            }
+            } else texField.error = null
         }
         if(!isValid) Snackbar.make(mBinding.root,
                     R.string.edit_store_message_valid,
