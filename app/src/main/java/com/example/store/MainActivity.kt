@@ -138,8 +138,10 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
             action = Intent.ACTION_DIAL
             data = Uri.parse("tel:$phone")
         }
-        startActivity(callItent)
-
+        if(callItent.resolveActivity(packageManager) != null)
+            startActivity(callItent)
+        else
+            Toast.makeText(this, R.string.main_error_no_resolve, Toast.LENGTH_LONG).show()
     }
 
     private fun goToWebsite(website: String){
@@ -150,7 +152,11 @@ class MainActivity : AppCompatActivity(), OnClickListener, MainAux {
                 action = Intent.ACTION_VIEW
                 data = Uri.parse(website)
             }
-            startActivity(websiteIntent)
+            if(websiteIntent.resolveActivity(packageManager) != null)
+                startActivity(websiteIntent)
+            else
+                Toast.makeText(this, R.string.main_error_no_resolve, Toast.LENGTH_LONG).show()
+
         }
 
     }
