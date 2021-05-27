@@ -49,8 +49,28 @@ class   EditStoreFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
+        setupTextFields()
 
+    }
 
+    private fun setupTextFields() {
+        with(mBinding){
+            etName.addTextChangedListener { validateFields(tilName) }
+            etPhone.addTextChangedListener { validateFields(tilPhone) }
+            etPhotoUrl.addTextChangedListener {
+                validateFields(tilPhotoUrl)
+                loadImage(it.toString().trim())
+            }
+        }
+
+    }
+
+    private fun loadImage(url: String){
+        Glide.with(this)
+            .load(url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
+            .into(mBinding.imgPhoto)
     }
 
     private fun getStore(id: Long) {
